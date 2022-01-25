@@ -14,7 +14,7 @@ require('init-lspconf')
 -- require('init-dap')
 -- 代码高亮
 require('init-treesitter')
-require('init-cmp')
+-- require('init-cmp')
 -- tab划线
 require('init-indent')
 require('init-telescope')
