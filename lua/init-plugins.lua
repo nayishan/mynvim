@@ -75,4 +75,6 @@ return require('packer').startup(function(use)
   use 'nvim-telescope/telescope-media-files.nvim'
   --多高亮
   use 'lfv89/vim-interestingwords'
+  --symbols
+  use 'simrat39/symbols-outline.nvim'
 end)

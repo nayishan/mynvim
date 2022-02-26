@@ -14,7 +14,7 @@ require('init-lspconf')
 -- require('init-dap')
 -- 代码高亮
 require('init-treesitter')
--- require('init-cmp')
+require('init-cmp')
 -- tab划线
 require('init-indent')
 require('init-telescope')
@@ -26,3 +26,5 @@ require('init-git')
 -- require('init-which-key')
 -- 多高亮
 require('init-mutihighlight')
+-- 函数栏
+require('init-symbols')
