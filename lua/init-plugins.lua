@@ -49,7 +49,8 @@ return require('packer').startup(function(use)
   -- auto tags
   use 'windwp/nvim-ts-autotag'
   -- surround with
-  use 'blackCauldron7/surround.nvim'
+  --use 'blackCauldron7/surround.nvim'
+    use 'ur4ltz/surround.nvim'
   -- comment
   use 'numToStr/Comment.nvim'
   -- indent
