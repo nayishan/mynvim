@@ -8,7 +8,7 @@ local on_attach = function(client, bufnr)
   -- Mappings.
   local opts = { noremap=true, silent=true }
   -- buf_set_keymap('n', 'gD', '<Cmd>lua vim.lsp.buf.declaration()<CR>', opts)
-  buf_set_keymap('n', '<leader>d', '<Cmd>lua vim.lsp.buf.definition()<CR>', opts)
+  buf_set_keymap('n', '<C-]>', '<Cmd>lua vim.lsp.buf.definition()<CR>', opts)
   buf_set_keymap('n', '<leader>p', '<Cmd>Lspsaga preview_definition<CR>', opts)
   --buf_set_keymap('n', '<S-Up>', "<cmd>lua require('lspsaga.action').smart_scroll_with_saga(-1)<CR>", opts)
   --buf_set_keymap('n', '<S-Down>', "<cmd>lua require('lspsaga.action').smart_scroll_with_saga(1)<CR>", opts)
