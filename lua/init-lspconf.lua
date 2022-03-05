@@ -32,8 +32,9 @@ for _, lsp in ipairs(servers) do
 end
 
 -- setup for lua language server
+local sumneko_root_path = "/home/jiamingwei/.local/share/nvim/lsp_servers/sumneko_lua/extension/server/bin/"
 nvim_lsp.sumneko_lua.setup({
-  cmd = {'lua-language-server', '-E', '/usr/share/lua-language-server/main.lua'},
+  cmd = {sumneko_root_path .. 'lua-language-server', '-E', sumneko_root_path .. 'main.lua'},
   on_attach = on_attach,
   capabilities = capabilities,
   settings = {
