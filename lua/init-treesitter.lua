@@ -1,7 +1,7 @@
 require'nvim-treesitter.configs'.setup {
   -- 安装 language parser
   -- :TSInstallInfo 命令查看支持的语言
-    ensure_installed = {"dockerfile", "vim", "lua", "cmake", "make", "c", "cpp", "python"},
+    ensure_installed = {"dockerfile", "vim", "lua", "cmake", "make", "c", "cpp", "python", "go"},
     autotag = {
         enable = true
     },

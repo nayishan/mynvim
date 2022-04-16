@@ -87,6 +87,20 @@ nvim_lsp.clangd.setup({
     root_dir = util.root_pattern("compile_commands.json", "compile_flags.txt", ".git"),
     single_file_support = true
 })
+local gopls_root_path = os.getenv("HOME") .. "/.local/share/nvim/lsp_servers/go/"
+nvim_lsp.gopls.setup {
+    cmd = {gopls_root_path .. "gopls", "serve"},
+    filetypes = {"go", "gomod"},
+    root_dir = util.root_pattern("go.work", "go.mod", ".git"),
+    settings = {
+      gopls = {
+        analyses = {
+          unusedparams = true,
+        },
+        staticcheck = true,
+      },
+    },
+  }
 --[[
 nvim_lsp.ccls.setup ({
   cmd = { "ccls" },
