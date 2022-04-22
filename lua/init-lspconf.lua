@@ -19,6 +19,18 @@ local on_attach = function(client, bufnr)
   buf_set_keymap('n', '<S-[>', '<cmd>Lspsaga diagnostic_jump_prev<CR>', opts)
   buf_set_keymap('n', '<S-]>', '<cmd>Lspsaga diagnostic_jump_next<CR>', opts)
   -- buf_set_keymap('n', '<space>f', '<cmd>lua vim.lsp.buf.formatting()<CR>', opts)
+  if client.resolved_capabilities.document_highlight then
+    vim.api.nvim_exec([[
+      hi LspReferenceRead cterm=bold ctermbg=DarkMagenta guibg=LightYellow
+      hi LspReferenceText cterm=bold ctermbg=DarkMagenta guibg=LightYellow
+      hi LspReferenceWrite cterm=bold ctermbg=DarkMagenta guibg=LightYellow
+      augroup lsp_document_highlight
+        autocmd! * <buffer>
+        autocmd CursorHold <buffer> lua vim.lsp.buf.document_highlight()
+        autocmd CursorMoved <buffer> lua vim.lsp.buf.clear_references()
+      augroup END
+    ]], false)
+end
 end
 
 local capabilities = vim.lsp.protocol.make_client_capabilities()
@@ -88,19 +100,23 @@ nvim_lsp.clangd.setup({
     root_dir = util.root_pattern("compile_commands.json", "compile_flags.txt", ".git"),
     single_file_support = true
 })
+
 local gopls_root_path = os.getenv("HOME") .. "/.local/share/nvim/lsp_servers/go/"
 nvim_lsp.gopls.setup {
     cmd = {gopls_root_path .. "gopls", "serve"},
     filetypes = {"go", "gomod"},
-    root_dir = util.root_pattern("go.work", "go.mod", ".git"),
-    settings = {
-      gopls = {
-        analyses = {
-          unusedparams = true,
-        },
-        staticcheck = true,
-      },
-    },
+	capabilities = capabilities,
+	    settings = {
+	      gopls = {
+		     experimentalPostfixCompletions = true,
+		      analyses = {
+		        unusedparams = true,
+		        shadow = true,
+		     },
+		     staticcheck = true,
+		    },
+	    },
+	on_attach = on_attach,
   }
 --[[
 nvim_lsp.ccls.setup ({
@@ -118,3 +134,36 @@ nvim_lsp.ccls.setup ({
   }
 })
 --]]
+--
+-- Set autocommands conditional on server_capabilities
+vim.cmd(
+  [[
+	autocmd BufWritePre *.go lua vim.lsp.buf.formatting()
+	autocmd BufWritePre *.go lua goimports(1000)
+]])
+function goimports(timeoutms)
+local context = { source = { organizeImports = true } }
+    vim.validate { context = { context, "t", true } }
+local params = vim.lsp.util.make_range_params()
+    params.context = context
+-- See the implementation of the textDocument/codeAction callback
+-- (lua/vim/lsp/handler.lua) for how to do this properly.
+local result = vim.lsp.buf_request_sync(0, "textDocument/codeAction", params, timeout_ms)
+if not result or next(result) == nil then return end
+local actions = result[1].result
+if not actions then return end
+local action = actions[1]
+-- textDocument/codeAction can return either Command[] or CodeAction[]. If it
+-- is a CodeAction, it can have either an edit, a command or both. Edits
+-- should be executed first.
+if action.edit or type(action.command) == "table" then
+if action.edit then
+        vim.lsp.util.apply_workspace_edit(action.edit)
+end
+if type(action.command) == "table" then
+        vim.lsp.buf.execute_command(action.command)
+end
+else
+      vim.lsp.buf.execute_command(action)
+end
+end 
