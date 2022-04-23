@@ -56,6 +56,8 @@ vim.wo.relativenumber       = true
 vim.wo.cursorline   = true      -- Highlight current line number
 vim.wo.signcolumn   = "yes"
 
+vim.g.clipboard = "unnamedplus"
+
 -- set up themes
 require('doom-one').setup({
   transparent_background = true,
@@ -116,6 +118,22 @@ map("n", "<C-l>", "<C-w>l", opt)
 -- map("n", ".", ":bn<CR>", opt)
 
 -- Highlight on yank
+vim.o.clipboard = "unnamedplus"
+if vim.loop.os_uname().sysname == "Darwin" then
+    vim.g.clipboard = {
+      name = "macOS-clipboard",
+      copy = {
+        ["+"] = "pbcopy",
+        ["*"] = "pbcopy",
+      },
+      paste = {
+        ["+"] = "pbpaste",
+        ["*"] = "pbpaste",
+      },
+      cache_enabled = 0
+   }
+end
+
 vim.cmd(
   [[
   augroup YankHighlight
