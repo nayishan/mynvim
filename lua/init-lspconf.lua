@@ -136,10 +136,18 @@ nvim_lsp.ccls.setup ({
 --]]
 --
 -- Set autocommands conditional on server_capabilities
+-- augroup GO_LSP
+-- 	autocmd!
+-- 	autocmd BufWritePre *.go :silent! lua vim.lsp.buf.formatting()
+-- 	autocmd BufWritePre *.go :silent! lua org_imports(3000)
+-- augroup END
+-- autocmd BufWritePre *.go  lua vim.lsp.buf.formatting()
+-- autocmd BufWritePre *.go  lua goimports(1000)
 vim.cmd(
   [[
-	autocmd BufWritePre *.go lua vim.lsp.buf.formatting()
-	autocmd BufWritePre *.go lua goimports(1000)
+  	autocmd!
+	autocmd BufWritePre *.go :slient! lua vim.lsp.buf.formatting()
+	autocmd BufWritePre *.go :silent! lua goimports(1000)
 ]])
 function goimports(timeoutms)
 local context = { source = { organizeImports = true } }
