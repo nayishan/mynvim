@@ -145,9 +145,8 @@ nvim_lsp.ccls.setup ({
 -- autocmd BufWritePre *.go  lua goimports(1000)
 vim.cmd(
   [[
-  	autocmd!
-	autocmd BufWritePre *.go :slient! lua vim.lsp.buf.formatting()
-	autocmd BufWritePre *.go :silent! lua goimports(1000)
+	autocmd BufWritePre *.go lua vim.lsp.buf.formatting()
+	autocmd BufWritePre *.go lua goimports(1000)
 ]])
 function goimports(timeoutms)
 local context = { source = { organizeImports = true } }
