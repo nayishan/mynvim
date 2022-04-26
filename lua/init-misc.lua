@@ -133,6 +133,7 @@ if vim.loop.os_uname().sysname == "Darwin" then
       cache_enabled = 0
    }
 end
+vim.cmd('language en_US.UTF-8')
 
 vim.cmd(
   [[
