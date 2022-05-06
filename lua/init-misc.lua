@@ -75,7 +75,35 @@ require('doom-one').setup({
       lspsaga = true,
   },
 })
+-- require('doom-one').setup({
+--     cursor_coloring = false,
+--     terminal_colors = true,
+--     italic_comments = false,
+--     enable_treesitter = true,
+--     transparent_background = false,
+--     pumblend = {
+--     	enable = true,
+--     	transparency_amount = 20,
+-- 	},
+-- 	plugins_integrations = {
+--     	neorg = true,
+--     	barbar = true,
+--     	bufferline = false,
+--     	gitgutter = false,
+--     	gitsigns = true,
+--     	telescope = false,
+--     	neogit = true,
+--     	nvim_tree = true,
+--     	dashboard = true,
+--     	startify = true,
+--     	whichkey = true,
+--     	indent_blankline = true,
+--     	vim_illuminate = true,
+--     	lspsaga = false,
+-- 	},
+-- })
 vim.cmd 'colorscheme doom-one'
+vim.opt.background = 'light'
 -- setup space as leader key
 vim.g.mapleader = ' '
 
@@ -119,20 +147,42 @@ map("n", "<C-l>", "<C-w>l", opt)
 
 -- Highlight on yank
 vim.o.clipboard = "unnamedplus"
-if vim.loop.os_uname().sysname == "Darwin" then
-    vim.g.clipboard = {
-      name = "macOS-clipboard",
-      copy = {
-        ["+"] = "pbcopy",
-        ["*"] = "pbcopy",
-      },
-      paste = {
-        ["+"] = "pbpaste",
-        ["*"] = "pbpaste",
-      },
-      cache_enabled = 0
-   }
-end
+-- if vim.loop.os_uname().sysname == "Darwin" then
+--     vim.g.clipboard = {
+--       name = "macOS-clipboard",
+--       copy = {
+--         ["+"] = "pbcopy",
+--         ["*"] = "pbcopy",
+--       },
+--       paste = {
+--         ["+"] = "pbpaste",
+--         ["*"] = "pbpaste",
+--       },
+--       cache_enabled = 0
+--    }
+-- end
+vim.g.clipboard = {
+	name =  "myClipboard",
+	copy = {
+		["+"]= os.getenv("HOME").."/.config/nvim/bin/clipboard-provider copy",
+		["*"]= os.getenv("HOME").."/.config/nvim/bin/clipboard-provider copy",
+	},
+	paste = {
+		["+"]= os.getenv("HOME").."/.config/nvim/bin/clipboard-provider paste",
+		["*"]= os.getenv("HOME").."/.config/nvim/bin/clipboard-provider paste",
+	},
+}
+-- vim.g.clipboard = {
+-- 	name =  "myClipboard",
+-- 	copy = {
+-- 		["+"]= "clipboard-provider copy",
+-- 		["*"]= "clipboard-provider copy",
+-- 	},
+-- 	paste = {
+-- 		["+"]= "clipboard-provider paste",
+-- 		["*"] = "clipboard-provider paste",
+-- 	},
+-- }
 vim.cmd('language en_US.UTF-8')
 
 vim.cmd(
