@@ -1,21 +1,21 @@
 -- require('vim-interestingwords')
 
 vim.api.nvim_set_keymap(
-  'n', '<leader>k', ":call InterestingWords('n')<CR>",
+  'n', '<F1>', ":call InterestingWords('n')<CR>",
   {
     noremap = true,
     silent = true
   }
 )
 vim.api.nvim_set_keymap(
-  'v', '<leader>k', ":call InterestingWords('v')<CR>",
+  'v', '<F1>', ":call InterestingWords('v')<CR>",
   {
     noremap = true,
     silent = true
   }
 )
 vim.api.nvim_set_keymap(
-  'n', '<leader>K', ':call UncolorAllWords()<CR>',
+  'n', '<leader><F1>', ':call UncolorAllWords()<CR>',
   {
     noremap = true,
     silent = true
@@ -29,7 +29,7 @@ vim.api.nvim_set_keymap(
   }
 )
 vim.api.nvim_set_keymap(
-  'n', 'N', ':call WordNavigation(1)<CR>',
+  'n', 'N', ':call WordNavigation(0)<CR>',
   {
     noremap = true,
     silent = true
