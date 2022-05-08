@@ -1,4 +1,3 @@
-vim.g.nvim_tree_quit_on_open = 1
 require('nvim-tree').setup({
   update_focused_file = {
     enable = true
@@ -6,9 +5,14 @@ require('nvim-tree').setup({
   view = {
     auto_resize = true
   },
+  actions = {
+    open_file = {
+       quit_on_open = true,
+	},
+  },
   filters = {
     custom = {'.git', 'node_modules'}
-  }
+  },
 })
 
 -- Mappings for nvimtree
