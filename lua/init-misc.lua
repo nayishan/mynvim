@@ -145,22 +145,7 @@ map("n", "<C-l>", "<C-w>l", opt)
 -- map("n", ",", ":bp<CR>", opt)
 -- map("n", ".", ":bn<CR>", opt)
 
--- Highlight on yank
 vim.o.clipboard = "unnamedplus"
--- if vim.loop.os_uname().sysname == "Darwin" then
---     vim.g.clipboard = {
---       name = "macOS-clipboard",
---       copy = {
---         ["+"] = "pbcopy",
---         ["*"] = "pbcopy",
---       },
---       paste = {
---         ["+"] = "pbpaste",
---         ["*"] = "pbpaste",
---       },
---       cache_enabled = 0
---    }
--- end
 vim.g.clipboard = {
 	name =  "myClipboard",
 	copy = {
@@ -172,19 +157,9 @@ vim.g.clipboard = {
 		["*"]= os.getenv("HOME").."/.config/nvim/bin/clipboard-provider paste",
 	},
 }
--- vim.g.clipboard = {
--- 	name =  "myClipboard",
--- 	copy = {
--- 		["+"]= "clipboard-provider copy",
--- 		["*"]= "clipboard-provider copy",
--- 	},
--- 	paste = {
--- 		["+"]= "clipboard-provider paste",
--- 		["*"] = "clipboard-provider paste",
--- 	},
--- }
 vim.cmd('language en_US.UTF-8')
 
+-- Highlight on yank
 vim.cmd(
   [[
   augroup YankHighlight

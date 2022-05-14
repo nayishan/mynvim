@@ -67,7 +67,7 @@ basic.file = {
             return {
                 { b_components.cache_file_name('[No Name]', 'unique'), 'magenta' },
                 { ' ', '' },
-			          { "" or gps.get_location(), 'white' },
+			          {gps.get_location() or ' ', 'white' },
                 { b_components.line_col_lua, 'white' },
                 { b_components.progress_lua, '' },
                 { ' ', '' },
