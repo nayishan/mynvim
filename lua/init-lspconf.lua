@@ -117,15 +117,6 @@ nvim_lsp.clangd.setup({
 	capabilities = capabilities,
 	on_attach = on_attach,
 	cmd = { "clangd" },
-	filetypes = { "c", "cpp", "objc", "objcpp" },
-	root_dir = util.root_pattern("compile_commands.json", "compile_flags.txt", ".git"),
-	single_file_support = true
-})
-
---require'lspconfig'.clangd.switch_source_header_splitcmd = switch_source_header_splitcmd
-
-require'lspconfig'.clangd.setup {
-	-----snip------
 	commands = {
 		ClangdSwitchSourceHeader = {
 			function() switch_source_header_splitcmd(0, "edit") end;
@@ -139,11 +130,15 @@ require'lspconfig'.clangd.setup {
 			function() switch_source_header_splitcmd(0, "split") end;
 			description = "Open source/header in a new split";
 		}
-	}
-}
+	},
+	filetypes = { "c", "cpp", "objc", "objcpp" },
+	root_dir = util.root_pattern("compile_commands.json", "compile_flags.txt", ".git"),
+	single_file_support = true
+})
+
 
 vim.api.nvim_set_keymap(
-  'n', '<lead>h', ":ClangdSwitchSourceHeaderVSplit<CR>",
+  'n', '<leader>h', ":ClangdSwitchSourceHeaderVSplit<CR>",
   {
     noremap = true,
     silent = true
