@@ -11,7 +11,7 @@ require('init-windline')
 require('init-term')
 -- 函数跳转
 require('init-lspconf')
--- require('init-dap')
+require('init-dap')
 -- 代码高亮
 require('init-treesitter')
 require('init-cmp')

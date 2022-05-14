@@ -1,3 +1,0 @@
-[submodule "pack/vendor/start/lspconfig"]
-	path = pack/vendor/start/lspconfig
-	url = https://github.com/neovim/nvim-lspconfig
