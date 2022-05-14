@@ -55,6 +55,13 @@ basic.lsp_diagnos = {
         return ''
     end,
 }
+local function gps_content()
+	if gps.is_available() then
+		return gps.get_location()
+	else
+		return ""
+	end
+end
 basic.file = {
     name = 'file',
     hl_colors = {
@@ -67,7 +74,7 @@ basic.file = {
             return {
                 { b_components.cache_file_name('[No Name]', 'unique'), 'magenta' },
                 { ' ', '' },
-			          {gps.get_location() or ' ', 'white' },
+				{gps_content(),'white'},
                 { b_components.line_col_lua, 'white' },
                 { b_components.progress_lua, '' },
                 { ' ', '' },
