@@ -121,8 +121,9 @@ require("github-theme").setup({
     }
   end
 })
---vim.opt.background = 'light'
-vim.cmd 'colorscheme github_light_colorblind'
+vim.opt.background = 'light'
+--vim.cmd 'colorscheme github_light_colorblind'
+vim.cmd 'colorscheme doom-one'
 -- setup space as leader key
 vim.g.mapleader = ' '
 
