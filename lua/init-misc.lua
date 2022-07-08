@@ -123,7 +123,7 @@ require('doom-one').setup({
 -- })
 vim.opt.background = 'light'
 --vim.cmd 'colorscheme github_light_colorblind'
-vim.cmd 'colorscheme doom-one'
+vim.cmd 'colorscheme leaf'
 -- setup space as leader key
 vim.g.mapleader = ' '
 

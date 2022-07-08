@@ -66,6 +66,7 @@ return require('packer').startup(function(use)
   -- color scheme
   use 'NTBBloodbath/doom-one.nvim'
   use "projekt0n/github-nvim-theme"
+  use 'daschw/leaf.nvim'
   -- status line
   use 'windwp/windline.nvim'
   -- clickable buffer line
