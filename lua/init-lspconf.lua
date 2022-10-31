@@ -162,6 +162,12 @@ nvim_lsp.gopls.setup {
 	},
 	on_attach = on_attach,
 }
+
+local sqlls_root_path = os.getenv("HOME") .. "/.local/share/nvim/lsp_servers/sql/"
+nvim_lsp.sqlls.setup {
+	cmd = {sqlls_root_path .. "sql-language-server", "up", "--method", "stdio"},
+	filetypes = {"sql", "mysql"},
+}
 --[[
 nvim_lsp.ccls.setup ({
 	cmd = { "ccls" },
